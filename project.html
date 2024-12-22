@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>project</title>
+    <link rel="stylesheet" href="project.css">
+</head>
+<body>
+    <div class="back">
+        <a href="index.html">&#8592;Home</a>
+    </div>
+  <div class="wrapper">
+    <span>&#128514;</span>
+    <p id="joke"> </p>
+    <button id="btn">Get Random Jokes</button>
+  </div>  
+
+</body>
+<script>
+    const jokeContainer=document.getElementById("joke");
+    const btn=document.getElementById("btn");
+    const url="https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,explicit&type=single";
+    let getJoke =() =>{
+        jokeContainer.classList.remove("fade")
+        fetch (url)
+        .then(data => data.json())
+        .then(item => {
+            jokeContainer.textContent =`${item.joke}`;
+            jokeContainer.classList.add("fade")
+        });      
+    }
+    btn.addEventListener("click",getJoke);
+    getJoke();
+
+</script>
+</html>
